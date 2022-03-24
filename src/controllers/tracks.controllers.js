@@ -3,11 +3,14 @@ const { tracksModel } = require('../models/index');
 
 const getTracks = async (req = request, res = response) => {
     try {
+        const user = req.user;
+        console.log(user);
         const data = await tracksModel.find({ status: true });
         res.status(200).json({
             ok: true,
             msg: 'Todos los Tracks',
-            data
+            data,
+            user
         });
     } catch (error) {
         res.status(500).json({
